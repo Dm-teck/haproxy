@@ -1,0 +1,29 @@
+version: "2.4"
+services:
+  web01:
+    image: nginx:latest
+    ports:
+      - "8081:80"
+    volumes:
+      - ./example.com/:/etc/nginx/conf.d
+      - ./web01/www/:/var/www
+  web02:
+    image: nginx:latest
+    ports:
+      - "8082:80"
+    volumes:
+      - ./example.com/:/etc/nginx/conf.d
+      - ./web02/www/:/var/www
+  web03:
+    image: nginx:latest
+    ports:
+      - "8083:80"
+    volumes:
+      - ./example.com/:/etc/nginx/conf.d
+      - ./web03/www/:/var/www
+  haproxy:
+    image: haproxy:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./haproxy/:/usr/local/etc/haproxy/
